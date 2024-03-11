@@ -1,6 +1,6 @@
 #include <iostream>
-#include "includes/contact.hpp"
-#include "includes/phonebook.hpp"
+#include "contact.hpp"
+#include "phonebook.hpp"
 
 int main(int argc, char const *argv[])
 {

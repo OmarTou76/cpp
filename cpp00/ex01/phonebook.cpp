@@ -1,4 +1,4 @@
-#include "includes/phonebook.hpp"
+#include "phonebook.hpp"
 #include <iomanip>
 #include <iostream>
 #include <string>
@@ -77,7 +77,7 @@ void Phonebook::_displayGrid(void)
 	for (int i = 0; i < this->_id && i < MAX_CONTACTS; i++)
 	{
 		std::string index;
-        index.push_back(i+'0');
+		index.push_back(i + '0');
 		this->_printField(index);
 		this->_printField(this->_formatField(this->_contact[i].getFirstName()));
 		this->_printField(this->_formatField(this->_contact[i].getLastName()));
@@ -94,9 +94,10 @@ void Phonebook::_displayContact(std::string query)
 
 	try
 	{
-        index = query[0] - '0';
-        if (query.length() > 1 || (query[0] < '0' && query[0] > '7') || index >= this->_id)
-            throw std::out_of_range("Invalid index");
+		index = query[0] - '0';
+		if (query.length() > 1 || (query[0] < '0' && query[0] > '7')
+			|| index >= this->_id)
+			throw std::out_of_range("Invalid index");
 		this->_contact[index].printContact();
 	}
 	catch (const std::out_of_range &)

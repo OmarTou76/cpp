@@ -1,4 +1,4 @@
-NAME=repertoire
+NAME=phonebook
 
 CC=c++
 
