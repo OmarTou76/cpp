@@ -2,6 +2,12 @@
 
 int main(int argc, char const *argv[])
 {
-    randomChump("faris");
+    (void)argc;
+    (void)argv;
+    Zombie *z = newZombie("First");
+    randomChump("Second");
+    randomChump("Third");
+    z->annonce();
+    delete z;
     return 0;
 }
