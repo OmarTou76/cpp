@@ -18,3 +18,5 @@ clean:
 
 fclean: clean
 	rm ${NAME}
+
+re: fclean all
