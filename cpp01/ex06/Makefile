@@ -2,7 +2,7 @@ NAME=harlFilter
 
 SRC=main.cpp Harl.cpp
 
-CC=g++
+CC=c++
 
 FLAGS= -Wall -Werror -Wextra -std=c++98
 

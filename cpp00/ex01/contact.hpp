@@ -8,7 +8,6 @@ public:
     Contact(void);
     ~Contact(void);
     Contact(std::string, std::string, std::string, std::string, std::string);
-    void displayContent(void);
     std::string getFirstName(void);
     std::string getLastName(void);
     std::string getNickname(void);

@@ -10,8 +10,6 @@ int isValidArgs(int argc, char const *argv[])
         return (0);
     }
     std::string str_to_replace = argv[2];
-    if (str_to_replace.empty())
-        return (0);
     return (1);
 }
 

@@ -2,7 +2,7 @@ NAME=sed
 
 SRC=main.cpp Sed.cpp
 
-CC=g++
+CC=c++
 
 FLAGS= -Wall -Werror -Wextra -std=c++98
 

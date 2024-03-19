@@ -3,9 +3,7 @@
 #include <iostream>
 #include <string>
 
-Phonebook::~Phonebook(void)
-{
-}
+Phonebook::~Phonebook(void) {}
 
 Phonebook::Phonebook(void)
 {

@@ -9,10 +9,14 @@ Sed::Sed(char const *argv[])
     this->_newString = std::string(argv[3]);
 }
 
+Sed::~Sed() {}
+
 std::string Sed::_replaceOcc(std::string &line)
 {
     std::size_t found;
     found = line.find(this->_strToReplace);
+    if (this->_strToReplace.empty())
+        return line;
     while  (found != std::string::npos)
     {
         line = line.substr(0, found) + this->_newString + line.substr(found + this->_strToReplace.length());
@@ -21,7 +25,7 @@ std::string Sed::_replaceOcc(std::string &line)
     return line;
 }
 
-void Sed::copyAndReplaceOcc(void) 
+void Sed::copyAndReplaceOcc(void)
 {
     std::string line;
     std::ifstream input(this->_filename.c_str());

@@ -5,11 +5,6 @@ Contact::Contact(void) {}
 Contact::~Contact(void) {}
 Contact::Contact(std::string firstName, std::string lastName, std::string nickname, std::string phoneNumber, std::string darksetSecret) : _firstName(firstName), _lastName(lastName), _nickname(nickname), _phoneNumber(phoneNumber), _darksetSecret(darksetSecret) {}
 
-void Contact::displayContent(void)
-{
-    std::cout << "First name: " << this->_firstName << std::endl;
-    std::cout << "Last name: " << this->_lastName << std::endl;
-}
 
 void Contact::printContact(void)
 {

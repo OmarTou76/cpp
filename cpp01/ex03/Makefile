@@ -2,7 +2,7 @@ NAME=prog
 
 SRC=main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 
-CC=g++
+CC=c++
 
 FLAGS= -Wall -Werror -Wextra -std=c++98
 

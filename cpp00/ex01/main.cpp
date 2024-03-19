@@ -10,7 +10,7 @@ int main(int argc, char const *argv[])
     std::string cmd;
     while (1)
     {
-        std::cout << "Command valid: ADD, SEARCH, EXIT" << std::endl
+        std::cout << "Valid commands: ADD, SEARCH, EXIT" << std::endl
                   << ">  ";
         std::getline(std::cin, cmd);
         if (cmd.compare("EXIT") == 0)

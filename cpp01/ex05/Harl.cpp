@@ -21,13 +21,13 @@ void Harl::error(void)
 }
 void Harl::complain(std::string level)
 {
-    void (Harl::*complain[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+    pickLevel levelFuncs[4] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
     std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
     for (int i = 0; i < 4; ++i)
     {
         if (level.compare(levels[i]) == 0)
         {
-            (this->*complain[i])();
+            (this->*levelFuncs[i])();
             break;
         }
     }

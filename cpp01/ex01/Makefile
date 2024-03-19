@@ -1,4 +1,4 @@
-NAME=z
+NAME=Zombie
 
 CC=c++
 

@@ -14,6 +14,7 @@ class Sed {
 
     public:
         Sed(char const *argv[]);
+        ~Sed();
         void copyAndReplaceOcc(void);
 };
 #endif

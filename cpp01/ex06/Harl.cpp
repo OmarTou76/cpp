@@ -53,6 +53,8 @@ void Harl::complain(std::string level)
         this->warning();
     case 'E':
         this->error();
+    default:
+        break;
     }
 }
 
