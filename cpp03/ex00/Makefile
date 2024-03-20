@@ -2,7 +2,7 @@ NAME=claptrap
 
 CC=g++
 
-FLAGS=-Wall -Werror -Wextra -std=c++98
+CFLAGS=-Wall -Werror -Wextra -std=c++98
 
 SRC= main.cpp ClapTrap.cpp
 
@@ -11,7 +11,7 @@ OBJ= ${SRC:.cpp=.o}
 all: ${NAME}
 
 ${NAME}: ${OBJ}
-	${CC} ${FLAGS} -o ${NAME} ${SRC}
+	${CC} ${CFLAGS} -o ${NAME} ${SRC}
 
 clean: 
 	rm ${OBJ}
