@@ -11,7 +11,7 @@ FragTrap::FragTrap() : ClapTrap()
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
-    std::cout << "Constructor init with string as parameter from ScapTrap class" << std::endl;
+    std::cout << "Constructor init with string as parameter from FragTrap class" << std::endl;
     this->_name = name;
     this->_hits = 100;
     this->_energy = 100;

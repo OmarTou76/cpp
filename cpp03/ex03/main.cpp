@@ -1,12 +1,12 @@
 #include <iostream>
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main(void)
 {
     std::cout << std::endl
               << std::endl;
 
-    FragTrap c("Omar");
+    DiamondTrap c("Omar");
     c.takeDamage(6);
     c.attack("weapons");
     c.beRepaired(4);
@@ -15,7 +15,7 @@ int main(void)
     std::cout << std::endl
               << std::endl;
 
-    FragTrap b;
+    DiamondTrap b;
     b.takeDamage(6);
     b.attack("weapons");
     b.beRepaired(4);
@@ -23,7 +23,7 @@ int main(void)
     std::cout << std::endl
               << std::endl;
 
-    FragTrap a = b;
+    DiamondTrap a = b;
     a.takeDamage(6);
     a.attack("weapons");
     a.beRepaired(4);
@@ -31,7 +31,7 @@ int main(void)
     std::cout << std::endl
               << std::endl;
 
-    FragTrap d(c);
+    DiamondTrap d(c);
     d.takeDamage(6);
     d.attack("weapons");
     d.beRepaired(4);

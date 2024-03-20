@@ -2,9 +2,8 @@
 #define SCAVTRAP_H
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
-private:
 public:
     ScavTrap();
     ScavTrap(std::string);
