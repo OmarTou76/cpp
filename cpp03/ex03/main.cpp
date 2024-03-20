@@ -10,8 +10,7 @@ int main(void)
     c.takeDamage(6);
     c.attack("weapons");
     c.beRepaired(4);
-    c.highFivesGuys();
-
+    c.whoAmI();
     std::cout << std::endl
               << std::endl;
 
@@ -19,7 +18,7 @@ int main(void)
     b.takeDamage(6);
     b.attack("weapons");
     b.beRepaired(4);
-    b.highFivesGuys();
+    b.whoAmI();
     std::cout << std::endl
               << std::endl;
 
@@ -27,15 +26,16 @@ int main(void)
     a.takeDamage(6);
     a.attack("weapons");
     a.beRepaired(4);
-    a.highFivesGuys();
-    std::cout << std::endl
-              << std::endl;
+    a.whoAmI();
+    std::cout
+        << std::endl
+        << std::endl;
 
     DiamondTrap d(c);
     d.takeDamage(6);
     d.attack("weapons");
     d.beRepaired(4);
-    d.highFivesGuys();
+    d.whoAmI();
     std::cout << std::endl
               << std::endl;
     return 0;

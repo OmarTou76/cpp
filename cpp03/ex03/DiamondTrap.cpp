@@ -47,7 +47,7 @@ DiamondTrap::~DiamondTrap()
     std::cout << "Deconstructor of DiamondTrap" << std::endl;
 }
 
-void DiamondTrap::whoIam(void)
+void DiamondTrap::whoAmI(void)
 {
     std::cout << "Name of DiamondTrap: " << this->_name << " and ClapTrap name is: " << this->ClapTrap::_name << std::endl;
 }
