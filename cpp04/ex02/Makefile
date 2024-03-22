@@ -14,14 +14,14 @@ all: ${NAME}
 ${NAME}: ${OBJS}
 	${CC} ${CFLAGS} -o ${NAME} ${SRC} 
 
-%.cpp: %.o
-	${CC} ${FLAGS} <$
+%.o: %.cpp
+	${CC} ${FLAGS} -c $< -o $@
 
 clean: 
 	rm ${OBJS}
 
 fclean: clean
-	rm ${NAME} ${CFLAGS} -c $< -o $@
+	rm ${NAME}
 
 re: fclean all
 
