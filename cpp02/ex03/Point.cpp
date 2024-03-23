@@ -42,6 +42,6 @@ int Point::getSumOfXY() const
 
 std::ostream &operator<<(std::ostream &out, Point const &rhs)
 {
-    out << " X: " << rhs.getXToInt() << " | Y: " << rhs.getYToInt();
+    out << "(" << rhs.getXToInt() << ", " << rhs.getYToInt() << ")";
     return out;
 }

@@ -4,7 +4,7 @@
 
 void printResult(Point p, bool ret)
 {
-    std::cout << p << " Is inside: " << (ret ? "TRUE" : "FALSE") << std::endl;
+    std::cout << p << " is " << (ret ? "" : "not ") << "inside triangle " << (ret ? "    ✅" : "❌") << std::endl;
 }
 
 int main(void)
