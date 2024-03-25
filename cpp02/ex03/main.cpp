@@ -18,6 +18,10 @@ int main(void)
     Point p4 = Point(5, 4);
     Point p5 = Point(6, 1);
 
+    std::cout << "A: " << a << std::endl;
+    std::cout << "B: " << b << std::endl;
+    std::cout << "C: " << c << std::endl << std::endl;
+
     printResult(p1, bsp(a, b, c, p1));
     printResult(p2, bsp(a, b, c, p2));
     printResult(p3, bsp(a, b, c, p3));
