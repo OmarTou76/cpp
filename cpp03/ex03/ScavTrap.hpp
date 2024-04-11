@@ -4,6 +4,7 @@
 
 class ScavTrap : virtual public ClapTrap
 {
+private:
 public:
     ScavTrap();
     ScavTrap(std::string);

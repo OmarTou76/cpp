@@ -2,7 +2,7 @@
 
 FragTrap::FragTrap() : ClapTrap()
 {
-    std::cout << "Empty constructor init called from FragTrap class" << std::endl;
+    std::cout << "Empty constructor init called fom FragTrap class" << std::endl;
     this->_name = "(No name)";
     this->_hits = 100;
     this->_energy = 100;
@@ -37,7 +37,7 @@ FragTrap &FragTrap::operator=(const FragTrap &rhs)
 
 FragTrap::~FragTrap()
 {
-    std::cout << "Deconstructor of FragTrap class" << std::endl;
+    std::cout << "Destructor of FragTrap class" << std::endl;
 }
 
 void FragTrap::highFivesGuys(void)

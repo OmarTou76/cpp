@@ -44,7 +44,7 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &rhs)
 
 DiamondTrap::~DiamondTrap()
 {
-    std::cout << "Deconstructor of DiamondTrap" << std::endl;
+    std::cout << "Destructor of DiamondTrap" << std::endl;
 }
 
 void DiamondTrap::whoAmI(void)
