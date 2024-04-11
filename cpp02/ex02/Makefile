@@ -11,10 +11,10 @@ ${NAME}: ${OBJ}
 	${CC} ${CFLAGS} -o ${NAME} ${SRC}
 
 clean: 
-	rm ${OBJ}
+	rm -rf ${OBJ}
 
 fclean: clean
-	rm ${NAME}
+	rm -rf ${NAME}
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@

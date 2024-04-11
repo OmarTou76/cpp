@@ -14,10 +14,10 @@ ${NAME}: ${OBJS}
 	${CC} ${CFLAGS} -o ${NAME} ${SRC} -g
 
 clean: 
-	rm ${OBJS}
+	rm -rf ${OBJS}
 
 fclean: clean
-	rm ${NAME}
+	rm -rf ${NAME}
 
 %.o: %.cpp
 	${CC} ${CFLAGS} -c $< -o $@
