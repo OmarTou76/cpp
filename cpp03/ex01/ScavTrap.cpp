@@ -1,6 +1,6 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap()
+ScavTrap::ScavTrap() : ClapTrap()
 {
     std::cout << "Empty constructor init called fom ScavTrap class" << std::endl;
     this->_name = "(No name)";
@@ -9,7 +9,7 @@ ScavTrap::ScavTrap()
     this->_attackDamage = 20;
 }
 
-ScavTrap::ScavTrap(std::string name)
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
     std::cout << "Constructor init with string as parameter from ScapTrap class" << std::endl;
     this->_name = name;
@@ -37,14 +37,17 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &rhs)
 
 ScavTrap::~ScavTrap()
 {
-    std::cout << "Deconstructor of ScavTrap class" << std::endl;
+    std::cout << "Destructor of ScavTrap class" << std::endl;
 }
 
 void ScavTrap::attack(const std::string &target)
 {
-    if (!this->_energy)
+    if (this->_energy < 1 || this->_hits < 1)
+    {
+        std::cout << "ScavTrap can't attack without energy or hit points" << std::endl;
         return;
-    std::cout << "ClapTrap " << this->_name << " attack " << target << ", causing " << this->_attackDamage << " points of damage (from ScavTrap class)" << std::endl;
+    }
+    std::cout << "ScavTrap " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
     this->_energy--;
 }
 
