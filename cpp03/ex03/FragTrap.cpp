@@ -17,7 +17,7 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
     this->_energy = 100;
     this->_attackDamage = 30;
 }
-FragTrap::FragTrap(const FragTrap &c)
+FragTrap::FragTrap(const FragTrap &c): ClapTrap()
 {
     std::cout << "Constructor init with FragTrap reference from FragTrap class" << std::endl;
     *this = c;
