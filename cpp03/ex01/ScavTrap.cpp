@@ -17,7 +17,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
     this->_energy = 50;
     this->_attackDamage = 20;
 }
-ScavTrap::ScavTrap(const ScavTrap &c)
+ScavTrap::ScavTrap(const ScavTrap &c): ClapTrap()
 {
     std::cout << "Constructor init with ScavTrap reference from ScavTrap class" << std::endl;
     *this = c;
