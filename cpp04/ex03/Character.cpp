@@ -18,6 +18,7 @@ Character &Character::operator=(const Character &rhs)
     }
     return *this;
 }
+
 Character::~Character()
 {
     for (int i = 0; i < ITEMS_QUANTITY; i++)
@@ -28,6 +29,7 @@ Character::~Character()
 }
 
 std::string const &Character::getName() const { return this->_name; }
+
 void Character::equip(AMateria *m)
 {
     if (!m)

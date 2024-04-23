@@ -1,4 +1,4 @@
-NAME=prog
+NAME=exec
 
 CC=c++
 

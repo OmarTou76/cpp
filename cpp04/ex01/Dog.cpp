@@ -4,12 +4,14 @@ Dog::Dog() : Animal("Dog"), _brain(new Brain())
 {
     std::cout << "Dog class: Constructor init without params" << std::endl;
 }
-Dog::Dog(const Dog &copy) : Animal()
+
+Dog::Dog(const Dog &copy) : Animal(copy)
 {
     this->_brain = new Brain();
     *this = copy;
     std::cout << "Dog class: Constructor init by copy" << std::endl;
 }
+
 Dog &Dog::operator=(const Dog &rhs)
 {
     if (&rhs != this)
@@ -22,7 +24,7 @@ Dog &Dog::operator=(const Dog &rhs)
 }
 Dog::~Dog()
 {
-    std::cout << "Dog class: Deconstructor" << std::endl;
+    std::cout << "Dog class: Destructor" << std::endl;
     delete this->_brain;
 }
 

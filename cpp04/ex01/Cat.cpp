@@ -4,7 +4,7 @@ Cat::Cat() : Animal("Cat"), _brain(new Brain())
 {
     std::cout << "Cat class: Constructor init without params" << std::endl;
 }
-Cat::Cat(const Cat &copy) : Animal()
+Cat::Cat(const Cat &copy) : Animal(copy.getType())
 {
     *this = copy;
     std::cout << "Cat class: Constructor init by copy" << std::endl;
@@ -21,7 +21,7 @@ Cat &Cat::operator=(const Cat &rhs)
 }
 Cat::~Cat()
 {
-    std::cout << "Cat class: Deconstructor" << std::endl;
+    std::cout << "Cat class: Destructor" << std::endl;
     delete this->_brain;
 }
 

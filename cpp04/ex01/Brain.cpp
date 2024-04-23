@@ -4,11 +4,13 @@ Brain::Brain::Brain()
 {
     std::cout << "Brain constructor called" << std::endl;
 }
+
 Brain::Brain(const Brain &copy)
 {
     std::cout << "Brain constructor by copy called" << std::endl;
     *this = copy;
 }
+
 Brain &Brain::operator=(const Brain &rhs)
 {
     if (this != &rhs)
@@ -19,9 +21,10 @@ Brain &Brain::operator=(const Brain &rhs)
     std::cout << "Brain constructor by assignation called" << std::endl;
     return *this;
 }
+
 Brain::~Brain()
 {
-    std::cout << "Brain deconstructor called" << std::endl;
+    std::cout << "Brain Destructor called" << std::endl;
 }
 
 void Brain::showIdeas(void)

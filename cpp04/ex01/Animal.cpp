@@ -23,7 +23,7 @@ Animal &Animal::operator=(const Animal &rhs)
 }
 Animal::~Animal()
 {
-    std::cout << "Animal class: Deconstructor" << std::endl;
+    std::cout << "Animal class: Destructor" << std::endl;
 }
 
 std::string Animal::getType(void) const

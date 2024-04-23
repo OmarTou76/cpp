@@ -1,6 +1,5 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongCat.hpp"
 #include <iostream>
 
 int main()
@@ -29,20 +28,17 @@ int main()
 
     // Deep copy
 
-    Cat *cat = new Cat();
-    cat->addIdea("Eating", 10);
-    Cat *dCopy = new Cat(*cat);
-    dCopy->addIdea("Sleeping", 1);
-    cat->addIdea("Sleeping", 99);
+    Cat cat;
+    cat.addIdea("Eating", 10);
     std::cout << std::endl;
+    Cat dCopy(cat);
+    dCopy.addIdea("Sleeping", 1);
+    cat.addIdea("Sleeping", 99);
     std::cout << std::endl;
+    
+    dCopy.displayIdeas();
     std::cout << std::endl;
-    dCopy->displayIdeas();
-    cat->displayIdeas();
+    cat.displayIdeas();
     std::cout << std::endl;
-    std::cout << std::endl;
-    std::cout << std::endl;
-    delete cat;
-    delete dCopy;
     return 0;
 }

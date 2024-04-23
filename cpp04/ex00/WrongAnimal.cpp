@@ -26,7 +26,7 @@ WrongAnimal &WrongAnimal::operator=(const WrongAnimal &rhs)
 
 WrongAnimal::~WrongAnimal()
 {
-    std::cout << "WrongAnimal class: Deconstructor" << std::endl;
+    std::cout << "WrongAnimal class: Destructor" << std::endl;
 }
 
 std::string WrongAnimal::getType(void) const
