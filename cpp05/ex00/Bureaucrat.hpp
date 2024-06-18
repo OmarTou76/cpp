@@ -11,13 +11,16 @@ class Bureaucrat {
 	public:
 	Bureaucrat();
 	Bureaucrat(const Bureaucrat &);
-	Bureaucrat(std::string name, unsigned int grade);
+	Bureaucrat(std::string name, int grade);
 	Bureaucrat &operator=(const Bureaucrat &rhs);
 	
 	~Bureaucrat();
 
 	std::string getName() const;
 	unsigned int getGrade() const;
+
+	void canUpdateGrade(int newGrade) const;
+
 	void incrementGrade();
 	void decrementGrade();
 
@@ -35,3 +38,4 @@ class Bureaucrat {
 };
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &rhs);
+
