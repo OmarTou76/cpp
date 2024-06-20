@@ -10,6 +10,7 @@ class ShrubberyCreationForm : public AForm
 private:
   std::string _target;
   ShrubberyCreationForm();
+  void writeAsciiTree(std::ostream &file) const;
 
 public:
   ShrubberyCreationForm(std::string target);
@@ -18,6 +19,5 @@ public:
   ~ShrubberyCreationForm();
 
   std::string getTarget() const;
-  void writeAsciiTree(std::ostream &file) const;
-  virtual void execute(Bureaucrat const &) const;
+  void execute(Bureaucrat const &) const;
 };
