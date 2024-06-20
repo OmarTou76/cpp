@@ -1,17 +1,17 @@
 #include <iostream>
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 #include "Bureaucrat.hpp"
 
 int main(void)
 {
     try
     {
-
-        Bureaucrat b("Johm", 137);
+        Bureaucrat b("John", 137);
         ShrubberyCreationForm a("Contract");
         b.signForm(a);
-        a.execute(b);
+        b.executeForm(a);
 
         std::cout << std::endl
                   << "-------------" << std::endl
@@ -20,7 +20,16 @@ int main(void)
         Bureaucrat c("Doe", 37);
         RobotomyRequestForm d("Contract");
         c.signForm(d);
-        d.execute(c);
+        c.executeForm(d);
+
+        std::cout << std::endl
+                  << "-------------" << std::endl
+                  << std::endl;
+
+        Bureaucrat e("Kevin", 5);
+        PresidentialPardonForm f("Contract");
+        e.signForm(f);
+        e.executeForm(f);
     }
     catch (std::exception &e)
     {

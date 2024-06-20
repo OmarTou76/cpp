@@ -4,9 +4,11 @@ CC=c++
 
 CFLAGS= -Wall -Werror -Wextra -std=c++98
 
-SRC= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp
+SHRUBBERY_FILES=*_shrubbery
 
-H= Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp
+SRC= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+
+H= Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp
 
 OBJS= ${SRC:.cpp=.o}
 
@@ -20,10 +22,10 @@ ${NAME}: ${OBJS}
 	${CC} ${FLAGS} -c $< -o $@
 
 clean: 
-	rm -rf ${OBJS}
+	rm -rf ${OBJS} 
 
 fclean: clean
-	rm -rf ${NAME}
+	rm -rf ${NAME} ${SHRUBBERY_FILES}
 
 re: fclean all
 

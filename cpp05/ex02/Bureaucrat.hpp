@@ -5,7 +5,8 @@
 
 class AForm;
 
-class Bureaucrat {
+class Bureaucrat
+{
 private:
   std::string _name;
   int _grade;
@@ -25,13 +26,16 @@ public:
   void incrementGrade();
   void decrementGrade();
   void signForm(AForm &form);
+  void executeForm(AForm const &form);
 
-  class GradeTooHighException : public std::exception {
+  class GradeTooHighException : public std::exception
+  {
   public:
     virtual const char *what() const throw();
   };
 
-  class GradeTooLowException : public std::exception {
+  class GradeTooLowException : public std::exception
+  {
   public:
     virtual const char *what() const throw();
   };
