@@ -27,11 +27,11 @@ void Bureaucrat::canUpdateGrade(int newGrade) const
 {
   if (newGrade < 1)
   {
-    throw GradeTooLowException();
+    throw GradeTooHighException();
   }
   else if (newGrade > 150)
   {
-    throw GradeTooHighException();
+    throw GradeTooLowException();
   }
 }
 

@@ -5,8 +5,8 @@
 
 class Bureaucrat {
 	private:
-	std::string _name;
-	unsigned int _grade;
+	const std::string _name;
+	int _grade;
 
 	public:
 	Bureaucrat();
@@ -17,7 +17,7 @@ class Bureaucrat {
 	~Bureaucrat();
 
 	std::string getName() const;
-	unsigned int getGrade() const;
+	int getGrade() const;
 
 	void canUpdateGrade(int newGrade) const;
 

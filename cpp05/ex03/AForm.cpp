@@ -46,13 +46,9 @@ const char *AForm::FormNotSignedException::what() const throw()
 void AForm::gradeChecker(int grade) const
 {
   if (grade < 1)
-  {
-    throw GradeTooLowException();
-  }
-  else if (grade > 150)
-  {
     throw GradeTooHighException();
-  }
+  else if (grade > 150)
+    throw GradeTooLowException();
 }
 
 std::string AForm::getName() const { return this->_name; }

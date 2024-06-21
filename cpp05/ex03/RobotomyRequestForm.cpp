@@ -1,4 +1,5 @@
 #include "RobotomyRequestForm.hpp"
+#include <cstdlib>
 
 RobotomyRequestForm::RobotomyRequestForm() : AForm("Robotomy", 72, 45), _target("No-Name") {}
 RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("Robotomy", 72, 45), _target(target) {}
@@ -21,8 +22,8 @@ void RobotomyRequestForm::execute(Bureaucrat const &b) const
         throw GradeTooLowException();
 
     std::cout << "- BZZZZZT -" << std::endl;
-    std::srand(std::time(0));
-    int randomNumber = std::rand() % 2;
+    srand(time(0));
+    int randomNumber = rand() % 2;
     if (randomNumber)
         std::cout << this->getTarget() << " has been robotomized successfully !" << std::endl;
     else

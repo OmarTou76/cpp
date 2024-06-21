@@ -35,5 +35,21 @@ int main(void)
     {
         std::cout << e.what() << std::endl;
     }
+
+        std::cout << std::endl
+                  << "-------------" << std::endl
+                  << std::endl;
+
+    try
+    {
+        Bureaucrat c("Exception-name", 47);
+        RobotomyRequestForm d("Contract");
+        c.signForm(d);
+        c.executeForm(d);
+    }
+    catch (std::exception &e)
+    {
+        std::cout << e.what() << std::endl;
+    }
     return 0;
 }

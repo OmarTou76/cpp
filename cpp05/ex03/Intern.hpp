@@ -7,8 +7,11 @@
 class Intern
 {
 private:
-    int indexOf(std::string) const;
+    int indexOf(std::string &) const;
     void StrToLower(std::string &) const;
+    AForm* RC(std::string &);
+    AForm* SC(std::string &);
+    AForm* PP(std::string &);
 
 public:
     Intern();
@@ -16,11 +19,6 @@ public:
     Intern &operator=(const Intern &);
     ~Intern();
 
-    AForm *makeForm(std::string, std::string) const;
+    AForm *makeForm(std::string, std::string);
 
-    class FormInvalid : public std::exception
-    {
-    public:
-        virtual const char *what() const throw();
-    };
 };

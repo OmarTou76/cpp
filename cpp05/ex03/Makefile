@@ -19,7 +19,7 @@ ${NAME}: ${OBJS}
 	${CC} ${CFLAGS} -o ${NAME} ${SRC} 
 
 %.o: %.cpp ${H}
-	${CC} ${FLAGS} -c $< -o $@
+	${CC} ${CFLAGS} -c $< -o $@
 
 clean: 
 	rm -rf ${OBJS} 

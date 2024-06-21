@@ -1,58 +1,48 @@
 #include "Intern.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include <cstddef>
 
 Intern::Intern() {}
 Intern::Intern(const Intern &copy) { *this = copy; }
-Intern &Intern::operator=(const Intern &rhs)
-{
-    (void)rhs;
-    return *this;
+Intern &Intern::operator=(const Intern &rhs) {
+  (void)rhs;
+  return *this;
 };
 Intern::~Intern() {}
 
-void Intern::StrToLower(std::string &str) const
-{
-    for (size_t i = 0; i < str.length(); i++)
-        str[i] = std::tolower(str[i]);
+void Intern::StrToLower(std::string &str) const {
+  for (size_t i = 0; i < str.length(); i++)
+    str[i] = std::tolower(str[i]);
 }
 
-int Intern::indexOf(std::string target) const
-{
-    const std::string forms[] = {
-        "shrubbery creation",
-        "robotomy request",
-        "presidential pardon",
-    };
-    this->StrToLower(target);
-    for (size_t i = 0; i < forms->length(); i++)
-    {
-        if (!forms[i].compare(target))
-            return (int)i;
+AForm *Intern::RC(std::string &targetName) {
+  return new RobotomyRequestForm(targetName);
+}
+AForm *Intern::SC(std::string &targetName) {
+  return new ShrubberyCreationForm(targetName);
+}
+AForm *Intern::PP(std::string &targetName) {
+  return new PresidentialPardonForm(targetName);
+}
+
+AForm *Intern::makeForm(std::string formName, std::string targetName) {
+  AForm *form;
+  this->StrToLower(targetName);
+  const std::string forms[] = {
+      "shrubbery creation",
+      "robotomy request",
+      "presidential pardon",
+  };
+  AForm *(Intern::*formsFunc[])(std::string &) = {&Intern::RC, &Intern::SC,
+                                                  &Intern::PP};
+  for (size_t i = 0; i < 3; i++) {
+    if (!forms[i].compare(formName)) {
+      form = (this->*formsFunc[i])(targetName);
+      std::cout << "Intern creates " << formName << std::endl;
+      return form;
     }
-    return -1;
-}
-
-AForm *Intern::makeForm(std::string formName, std::string targetName) const
-{
-    AForm *form;
-    switch (this->indexOf(formName))
-    {
-    case 0:
-        form = new ShrubberyCreationForm(targetName);
-        break;
-    case 1:
-        form = new RobotomyRequestForm(targetName);
-        break;
-    case 2:
-        form = new PresidentialPardonForm(targetName);
-        break;
-    default:
-        throw FormInvalid();
-    }
-    std::cout << "Intern creates " << formName << std::endl;
-    return form;
-}
-
-const char *Intern::FormInvalid::what() const throw()
-{
-    return "Form does not exist !";
+  }
+  std::cout << formName << " is unknown type of form." << std::endl;
+  return NULL;
 }
