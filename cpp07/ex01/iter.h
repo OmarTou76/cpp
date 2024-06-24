@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 template <typename T, typename N, typename Fn>
 void iter(T tab[], N size, Fn func)

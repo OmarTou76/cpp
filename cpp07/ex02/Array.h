@@ -1,68 +1,49 @@
 #pragma once
 #include <iostream>
+#include <iterator>
 
-template <typename T>
-class Array
-{
+template <typename T> class Array {
 private:
-    T *content;
-    unsigned int N;
+  unsigned int _N;
+  T *_content;
 
 public:
-    Array()
-    {
-        this->N = 0;
-        this->content = new T[this->N];
+  Array() : _N(0), _content(new T()){};
+  ~Array() {
+    if (_content)
+      delete[] _content;
+  };
+
+  Array(unsigned int size) : _N(size), _content(new T[size]){};
+
+  Array(Array const &c) : _N(c.size()), _content(new T[c.size()]) {
+    for (unsigned int i = 0; i < this->_N; i++)
+      this->_content[i] = c._content[i];
+  };
+
+  const Array &operator=(Array const &rhs) {
+    if (this != &rhs) {
+      delete[] _content;
+      _N = rhs.size();
+      _content = new T[_N];
+      for (unsigned int i = 0; i < _N; i++)
+        _content[i] = rhs._content[i];
     }
+    return *this;
+  };
 
-    Array(unsigned int size)
-    {
-        this->N = size;
-        this->content = new T[this->N];
-    }
+  T &operator[](int index) {
+    if (index < 0 || index >= static_cast<int>(_N))
+      throw IndexOutOfBounds();
+    return _content[index];
+  };
 
-    Array(const Array &c)
-    {
-        this->N = c.size();
-        this->content = new T[this->N];
-        for (size_t i = 0; i < this->N; i++)
-            this->content[i] = c.content[i];
-        *this = c;
-    }
+  unsigned int size() const { return _N; };
 
-    const Array &operator=(const Array &rhs)
-    {
-        if (this != &rhs)
-        {
-            delete[] this->content;
-            this->N = rhs.size();
-            this->content = new T[this->N];
-            for (size_t i = 0; i < this->N; i++)
-                this->content[i] = rhs.content[i];
-        }
-        return *this;
-    }
-
-    T &operator[](int index)
-    {
-        if (index < 0 || index > static_cast<int>(this->N))
-            throw IndexOutOfBounds();
-        return this->content[index];
-    }
-
-    ~Array()
-    {
-        delete[] this->content;
-    }
-
-    unsigned int size() const { return this->N; }
-
-    class IndexOutOfBounds : public std::exception
-    {
-    public:
-        virtual const char *what() const throw()
-        {
-            return "Index out of bounds !";
-        }
+  class IndexOutOfBounds : public std::exception {
+  public:
+    virtual const char *what() const throw() {
+      return "Index out of bounds !";
     };
+  };
 };

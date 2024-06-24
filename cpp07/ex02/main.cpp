@@ -1,41 +1,43 @@
-#include <iostream>
 #include "Array.h"
+#include <cstdlib>
+#include <iostream>
 
-int main(void)
-{
-    Array<int> arr(3);
-    for (size_t i = 0; i < arr.size(); i++)
-        arr[i] = i + 45;
+#define MAX_VAL 750
+int main(int, char **) {
+  Array<int> numbers(MAX_VAL);
+  int *mirror = new int[MAX_VAL];
+  srand(time(NULL));
+  for (int i = 0; i < MAX_VAL; i++) {
+    const int value = rand();
+    numbers[i] = value;
+    mirror[i] = value;
+  }
+  // SCOPE
+  {
+    Array<int> tmp = numbers;
+    Array<int> test(tmp);
+  }
 
-    for (size_t i = 0; i < arr.size(); i++)
-        std::cout << arr[i] << std::endl;
-
-    std::cout << std::endl;
-    Array<std::string> strs(4);
-    strs[0] = "Hello";
-    strs[1] = "world";
-    strs[2] = "from";
-    strs[3] = "42";
-
-    for (size_t i = 0; i < strs.size(); i++)
-        std::cout << strs[i] << std::endl;
-
-    std::cout << std::endl
-              << "Copy ->" << std::endl
-              << std::endl;
-    Array<std::string> copy = strs;
-
-    for (size_t i = 0; i < strs.size(); i++)
-        std::cout << strs[i] << std::endl;
-
-    try
-    {
-        std::cout << strs[strs.size() * 2] << std::endl;
+  for (int i = 0; i < MAX_VAL; i++) {
+    if (mirror[i] != numbers[i]) {
+      std::cerr << "didn't save the same value!!" << std::endl;
+      return 1;
     }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
+  }
+  try {
+    numbers[-2] = 0;
+  } catch (const std::exception &e) {
+    std::cerr << e.what() << '\n';
+  }
+  try {
+    numbers[MAX_VAL] = 0;
+  } catch (const std::exception &e) {
+    std::cerr << e.what() << '\n';
+  }
 
-    return 0;
+  for (int i = 0; i < MAX_VAL; i++) {
+    numbers[i] = rand();
+  }
+  delete[] mirror; //
+  return 0;
 }

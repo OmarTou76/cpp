@@ -9,14 +9,14 @@ void printFirstCharToUpper(std::string &str)
 
 int main(void)
 {
-    int arr[] = {4, 5, 6, 7, 1, 2, 3};
+    float arr[] = { 1.5f, 2.1f, 3.2f, 4.9f, 5.1f, 6.6f, 7.8f };
     std::string strs[] = {
         "A -> Hello",
         "b -> World",
         "c -> Hello",
         "d -> Hello",
     };
-    iter(arr, 7, printElement<int>);
+    iter(arr, 7, printElement<float>);
     std::cout << std::endl;
     iter(strs, 4, printElement<std::string>);
     std::cout << std::endl;
