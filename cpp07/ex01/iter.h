@@ -1,15 +1,15 @@
 #pragma once
 #include <iostream>
 
-template <typename T, typename N, typename Fn>
-void iter(T tab[], N size, Fn func)
+template <typename T>
+void iter(T tab[], int N, void (func)(T&))
 {
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < N; i++)
         func(tab[i]);
 }
 
 template <typename T>
-void printElement(const T &element)
+void printElement(T &element)
 {
     std::cout << element << std::endl;
 }

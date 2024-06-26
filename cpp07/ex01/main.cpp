@@ -16,9 +16,9 @@ int main(void)
         "c -> Hello",
         "d -> Hello",
     };
-    iter(arr, 7, printElement<float>);
+    iter(arr, 7, printElement);
     std::cout << std::endl;
-    iter(strs, 4, printElement<std::string>);
+    iter(strs, 4, printElement);
     std::cout << std::endl;
     iter(strs, 4, printFirstCharToUpper);
 
