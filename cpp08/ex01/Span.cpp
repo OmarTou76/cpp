@@ -1,7 +1,6 @@
 #include "Span.h"
 #include <algorithm>
 #include <cstdlib>
-#include <stdexcept>
 
 Span::Span() : _N(0) {}
 Span::Span(unsigned int size) : _N(size) {}
@@ -45,7 +44,7 @@ unsigned int Span::shortestSpan() const
 {
   if (this->_N < 2)
     throw SpanNotBigEnough();
-  int shortest = INT_MAX;
+  int shortest = this->longestSpan();
   std::list<int>::const_iterator it;
   for (it = this->_content.begin(); it != this->_content.end(); it++)
   {
