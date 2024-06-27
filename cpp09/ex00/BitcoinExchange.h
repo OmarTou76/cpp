@@ -4,16 +4,18 @@
 
 typedef struct Data {
   std::string date;
-  float quantity;
+  std::string quantity;
 } t_data;
 
 class BitcoinExchange {
 private:
-	std::map<std::string, float> _imputValues;
-public:
-	BitcoinExchange();
-	BitcoinExchange(BitcoinExchange const &);
-	BitcoinExchange &operator=(BitcoinExchange const &);
+  std::map<std::string, float> _imputValues;
+  float convertQuantityToFloat(std::string &);
 
-	void appendValue(std::string date, float quantity);
-};  
+public:
+  BitcoinExchange();
+  BitcoinExchange(BitcoinExchange const &);
+  BitcoinExchange &operator=(BitcoinExchange const &);
+
+  void appendValue(t_data data);
+};

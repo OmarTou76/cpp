@@ -3,23 +3,24 @@
 #include <iostream>
 #include <string>
 
-void parseLine(std::string &line) {
-  // t_data data = {0};
-  size_t pos = 0;
+t_data splitLine(std::string &line) {
+  t_data data = {.date = "" , .quantity = "" };
+  int pos = 0;
   pos = line.find("|");
   std::string date = line.substr(0, pos);
-  std::string quantity = line.substr(pos + 1, line.length());
-
-  std::cout << date << ": " << quantity << " elements !" << std::endl;
+  std::string quantity = line.substr(pos + 1);
+  data.date = date;
+  if (pos > -1)
+    data.quantity = quantity;
+  return data;
 }
 
 void readInputContent(const char *filename, BitcoinExchange &btc) {
-  (void)btc;
   std::fstream file(filename);
   std::string line;
   std::getline(file, line);
   while (std::getline(file, line))
-    parseLine(line);
+    btc.appendValue(splitLine(line));
   file.close();
 }
 
