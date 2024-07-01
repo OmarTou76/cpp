@@ -30,7 +30,10 @@ void readAndSaveInputContent(const char *filename, BitcoinExchange &btc)
   std::string line;
   std::getline(file, line);
   while (std::getline(file, line))
-    btc.add(splitLine(line));
+  {
+    if (line.length())
+      btc.add(splitLine(line));
+  }
   file.close();
 }
 

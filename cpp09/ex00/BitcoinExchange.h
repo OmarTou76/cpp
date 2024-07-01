@@ -9,8 +9,8 @@ typedef struct Data
   std::string date;
   unsigned int timestamp;
   float quantity;
-  bool isValidInput;
   float nearestPrice;
+  bool isValidInput;
 } t_data;
 
 class BitcoinExchange
