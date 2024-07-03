@@ -19,8 +19,8 @@ Span::~Span() {}
 void Span::addRange(std::list<int>::const_iterator start, std::list<int>::const_iterator end)
 {
   int r_size = *end;
-  if (this->_content.size() + r_size >= this->_N)
-    throw ImpossibleToAddThisRange();
+  if (this->_content.size() + r_size > this->_N)
+    throw RangeToLarge();
   for (; start != end; start++)
     this->_content.push_back(*start);
 }
@@ -28,7 +28,7 @@ void Span::addRange(std::list<int>::const_iterator start, std::list<int>::const_
 void Span::addNumber(int number)
 {
   if (this->_content.size() >= _N)
-    throw ImpossibleToAddElement();
+    throw SpanAlreadyFull();
   this->_content.push_back(number);
 }
 
@@ -74,12 +74,12 @@ const char *Span::SpanNotBigEnough::what() const throw()
   return "Span is not big enough to use this function !";
 }
 
-const char *Span::ImpossibleToAddElement::what() const throw()
+const char *Span::SpanAlreadyFull::what() const throw()
 {
   return "Impossible to add an element, this span is already full !";
 }
 
-const char *Span::ImpossibleToAddThisRange::what() const throw()
+const char *Span::RangeToLarge::what() const throw()
 {
   return "Impossible to add this range, it will be an overflow !";
 }

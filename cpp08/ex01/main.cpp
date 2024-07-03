@@ -1,8 +1,7 @@
 #include "Span.h"
 #include <iostream>
 
-int main()
-{
+int main() {
   Span sp = Span(5);
   sp.addNumber(6);
   sp.addNumber(3);
@@ -13,8 +12,7 @@ int main()
   std::cout << sp.longestSpan() << std::endl;
   sp.status();
 
-  std::cout << std::endl
-            << "---------------" << std::endl;
+  std::cout << std::endl << "---------------" << std::endl;
 
   std::list<int> l;
   for (int i = 0; i < 103; i++)
@@ -24,18 +22,15 @@ int main()
   std::list<int>::const_iterator end = l.end();
   Span possible = Span(200);
   Span impossible = Span(20);
-  try
-  {
+  try {
     possible.addRange(start, end);
     impossible.addRange(start, end);
-  }
-  catch (const std::exception &e)
-  {
+  } catch (const std::exception &e) {
     std::cerr << e.what() << std::endl;
   }
 
   possible.status();
   impossible.status();
-
+  
   return 0;
 }

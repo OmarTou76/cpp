@@ -28,13 +28,13 @@ public:
 		const char *what() const throw();
 	};
 
-	class ImpossibleToAddElement : public std::exception
+	class SpanAlreadyFull : public std::exception
 	{
 	public:
 		const char *what() const throw();
 	};
 
-	class ImpossibleToAddThisRange : public std::exception
+	class RangeToLarge : public std::exception
 	{
 	public:
 		const char *what() const throw();

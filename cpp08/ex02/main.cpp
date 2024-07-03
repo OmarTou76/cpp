@@ -1,17 +1,6 @@
 #include <iostream>
 #include "MutantStack.h"
 
-/* int main(void)
-{
-  MutantStack<int> st;
-
-  st.push(39);
-  st.push(239);
-  st.push(339);
-  st.push(349);
-  std::cout << *st.begin() << std::endl;
-  std::cout << *std::prev(st.end()) << std::endl;
-} */
 
 int main()
 {
