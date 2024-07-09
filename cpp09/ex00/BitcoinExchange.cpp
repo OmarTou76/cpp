@@ -1,6 +1,7 @@
 #include "BitcoinExchange.h"
 #include <cstdlib>
 #include <string>
+#include <cstring>
 #include <algorithm>
 
 BitcoinExchange::BitcoinExchange() {}

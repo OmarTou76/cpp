@@ -2,7 +2,9 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <ctime>
+#include <cstdlib>
 
 t_data splitLine(std::string &line)
 {
