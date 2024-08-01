@@ -1,4 +1,4 @@
-NAME=Merge
+NAME=PmergeMe
 
 CC=c++
 

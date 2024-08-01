@@ -1,11 +1,10 @@
 #pragma once
+#include <fstream>
 #include <iostream>
 #include <map>
 #include <vector>
-#include <fstream>
 
-typedef struct Data
-{
+typedef struct Data {
   std::string date;
   unsigned int timestamp;
   float quantity;
@@ -13,8 +12,7 @@ typedef struct Data
   bool isValidInput;
 } t_data;
 
-class BitcoinExchange
-{
+class BitcoinExchange {
 private:
   std::vector<t_data> _values;
   float getNearestPrice(t_data &) const;
@@ -31,30 +29,24 @@ public:
 
   static unsigned int toTimestamp(std::string date);
 
-  class InvalidInput : public std::exception
-  {
+  class BtcDidNotExist : public std::exception {
   public:
-    const char *what() const throw()
-    {
-      return "bad input => ";
+    const char *what() const throw() {
+      return "at that time, btc did not exist => ";
     }
   };
-
-  class NotPositiveNumber : public std::exception
-  {
+  class InvalidInput : public std::exception {
   public:
-    const char *what() const throw()
-    {
-      return "not a positive number.";
-    }
+    const char *what() const throw() { return "bad input => "; }
   };
 
-  class TooLargeQuantity : public std::exception
-  {
+  class NotPositiveNumber : public std::exception {
   public:
-    const char *what() const throw()
-    {
-      return "too large a number.";
-    }
+    const char *what() const throw() { return "not a positive number."; }
+  };
+
+  class TooLargeQuantity : public std::exception {
+  public:
+    const char *what() const throw() { return "too large a number."; }
   };
 };

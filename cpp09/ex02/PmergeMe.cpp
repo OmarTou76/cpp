@@ -95,7 +95,7 @@ template <typename Container> void PmergeMe::sortList(Container &list) {
 }
 
 int PmergeMe::convertValue(const char *val) {
-  int ret = atoi(val);
+  long ret = atoi(val);
   if (ret < 0 || (ret == 0 && (strlen(val) != 1 || val[0] != '0')))
     throw InvalidImput();
   return ret;
@@ -112,13 +112,12 @@ void PmergeMe::sort() {
   _elapsedTimeDeque = static_cast<double>(end - start) / CLOCKS_PER_SEC;
 }
 
-// Time to process a range of 5 elements with std::[..] : 0.00031 us
 void PmergeMe::displayTimeToProceed() const {
   std::cout << "Time to process a range of " << _list.size()
-            << " elements with std::list<unsigned int> : " << std::fixed
+            << " elements with std::list : " << std::fixed
             << std::setprecision(6) << _elapsedTimeList << " us" << std::endl;
   std::cout << "Time to process a range of " << _dq.size()
-            << " elements with std::deque<unsigned int> : " << std::fixed
+            << " elements with std::deque : " << std::fixed
             << std::setprecision(6) << _elapsedTimeDeque << " us" << std::endl;
 }
 
