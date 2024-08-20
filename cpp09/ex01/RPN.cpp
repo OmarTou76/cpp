@@ -29,6 +29,9 @@ void RPN::compute(std::string &op) {
   int bottom = this->_numbers.top();
   this->_numbers.pop();
 
+  if (op == "/" && top == 0)
+    throw InvalidToken();
+
   if (op == "+")
     this->_numbers.push(bottom + top);
   else if (op == "-")
