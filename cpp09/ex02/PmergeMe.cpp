@@ -66,8 +66,10 @@ ContainerPair PmergeMe::getPair(Container container) {
   typedef typename Container::const_iterator iterator;
   for (iterator it = container.begin(); it != container.end(); it++) {
     if (i % 2 == 0 && size_t(i) != container.size() - 1) {
-      unsigned int first = std::min(*it, *(++it));
-      unsigned int second = std::max(*(--it), *(++it));
+      unsigned int f = *it++;
+      unsigned int s = *it;
+      unsigned int first = std::min(f, s);
+      unsigned int second = std::max(f, s);
       --it;
       list.push_back(std::make_pair(first, second));
     } else if (i % 2 == 0 && size_t(i) == container.size() - 1) {
@@ -157,8 +159,8 @@ template <typename ContainerPair, typename Container>
 void PmergeMe::insert(ContainerPair list, Container &container) {
   bool hasLast = container.size() % 2 == 0 ? false : true;
   container.clear();
-  typedef typename ContainerPair::const_iterator iteratorPair;
-  typedef typename Container::const_iterator iterator;
+  typedef typename ContainerPair::iterator iteratorPair;
+  typedef typename Container::iterator iterator;
   for (iteratorPair it = list.begin(); it != list.end(); it++) {
     container.push_back(it->first);
   }
@@ -174,9 +176,17 @@ void PmergeMe::insert(ContainerPair list, Container &container) {
   }
 }
 
+template <typename ContainerPair> void printContent(ContainerPair container) {
+  typedef typename ContainerPair::iterator iteratorPair;
+  for (iteratorPair it = container.begin(); it != container.end(); it++) {
+    std::cout << it->first << " -> " << it->second << std::endl;
+  }
+}
+
 void PmergeMe::sortContainers() {
   clock_t start = clock();
   pairDq dq = getPair<pairDq>(_dq);
+  // printContent(dq);
   sortDq(dq);
   insert(dq, _dq);
   clock_t end = clock();
@@ -184,6 +194,7 @@ void PmergeMe::sortContainers() {
 
   start = clock();
   pairList list = getPair<pairList>(_list);
+  // printContent(dq);
   sortList(list);
   insert(list, _list);
   end = clock();

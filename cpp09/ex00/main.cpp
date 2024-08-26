@@ -16,7 +16,6 @@ public:
 
 t_data splitLine(std::string &line) {
   t_data data;
-  memset(&data, 0, sizeof(t_data));
   int pos = 0;
   pos = line.find("|");
   std::string date = line.substr(0, pos);

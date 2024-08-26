@@ -10,6 +10,8 @@ typedef struct Data {
   float quantity;
   float nearestPrice;
   bool isValidInput;
+
+ Data(): date(""), timestamp(0), quantity(0), nearestPrice(0), isValidInput(false) {}
 } t_data;
 
 class BitcoinExchange {

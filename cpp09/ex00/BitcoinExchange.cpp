@@ -53,7 +53,6 @@ void BitcoinExchange::showConversions() {
 float BitcoinExchange::getNearestPrice(t_data &req) const {
   std::fstream db("./data.csv");
   t_data target;
-  memset(&target, 0, sizeof(t_data));
   target.nearestPrice = -1;
   if (db.is_open()) {
     std::string line;
