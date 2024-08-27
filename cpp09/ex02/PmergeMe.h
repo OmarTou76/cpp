@@ -13,6 +13,7 @@ class PmergeMe {
 private:
   std::list<unsigned int> _list;
   std::deque<unsigned int> _dq;
+  bool _hasLast;
   unsigned _last;
   double _elapsedTimeList;
   double _elapsedTimeDeque;
@@ -34,6 +35,7 @@ private:
                        typename Container::iterator end);
   pairDq getSubPairDq(pairDq::iterator start, pairDq::iterator end);
   pairList getSubPairList(pairList::iterator start, pairList::iterator end);
+  void partitionRemainingElements(std::deque<unsigned int>& remainingElements);
   PmergeMe();
 
 public:

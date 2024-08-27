@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <ctime>
+#include <deque>
 #include <exception>
 #include <iomanip>
 #include <ios>
@@ -12,9 +13,11 @@
 #include <utility>
 
 PmergeMe::PmergeMe()
-    : _list(), _dq(), _elapsedTimeList(-1), _elapsedTimeDeque(-1) {}
+    : _list(), _dq(), _hasLast(false), _elapsedTimeList(-1),
+      _elapsedTimeDeque(-1) {}
 PmergeMe::PmergeMe(int argc, char **argv)
-    : _list(), _dq(), _elapsedTimeList(-1), _elapsedTimeDeque(-1) {
+    : _list(), _dq(), _hasLast(false), _elapsedTimeList(-1),
+      _elapsedTimeDeque(-1) {
   this->storeValues(argc, argv);
 }
 PmergeMe::PmergeMe(const PmergeMe &cp) { *this = cp; }
@@ -62,7 +65,6 @@ template <typename ContainerPair, typename Container>
 ContainerPair PmergeMe::getPair(Container container) {
   ContainerPair list;
   int i = 0;
-
   typedef typename Container::const_iterator iterator;
   for (iterator it = container.begin(); it != container.end(); it++) {
     if (i % 2 == 0 && size_t(i) != container.size() - 1) {
@@ -73,6 +75,7 @@ ContainerPair PmergeMe::getPair(Container container) {
       --it;
       list.push_back(std::make_pair(first, second));
     } else if (i % 2 == 0 && size_t(i) == container.size() - 1) {
+      _hasLast = true;
       _last = *it;
     }
     i++;
@@ -103,7 +106,7 @@ void PmergeMe::sortList(pairList &list) {
 
   list.clear();
   while (start.size() && end.size()) {
-    if (start.front().first < end.front().first) {
+    if (start.front().second < end.front().second) {
       list.push_back(start.front());
       start.pop_front();
     } else {
@@ -138,7 +141,7 @@ void PmergeMe::sortDq(pairDq &list) {
   size_t i_end = 0;
   size_t i = 0;
   while (i_start < start.size() && i_end < end.size()) {
-    if (start[i_start].first < end[i_end].first) {
+    if (start[i_start].second < end[i_end].second) {
       list[i] = start[i_start++];
     } else {
       list[i] = end[i_end++];
@@ -155,29 +158,84 @@ void PmergeMe::sortDq(pairDq &list) {
   }
 }
 
+std::deque<unsigned int> getSequences(unsigned int max) {
+  std::deque<unsigned int> groupSizes(2, 2);
+  unsigned int acc = 4;
+  unsigned int index = 1;
+  while (acc < max) {
+    unsigned int next = groupSizes[index - 1] + groupSizes[index] + 2;
+    std::cout <<groupSizes[index - 1] << " + " << groupSizes[index] <<std::endl;
+    std::cout << "-> " << next << std::endl;
+    groupSizes.push_back(next);
+    acc += next;
+    index++;
+  }
+  return groupSizes;
+}
+
+void PmergeMe::partitionRemainingElements(std::deque<unsigned int> &remainingElements) {
+  std::deque<unsigned int> orderedElements;
+  std::deque<unsigned int> subArrSize = getSequences(remainingElements.size());
+  size_t index = 0;
+
+  for (size_t s = 0; s < subArrSize.size(); s++) {
+    if (index >= remainingElements.size())
+      break;
+    int size = subArrSize[s];
+
+    size_t endIndex = std::min(index + size, remainingElements.size());
+    std::cout << "Size: " << remainingElements.size() << " - " << endIndex << " - " << size << std::endl;
+    std::deque<unsigned int> group(remainingElements.begin() + index,
+                    remainingElements.begin() + endIndex);
+    std::reverse(group.begin(), group.end()); // Trier par index décroissant
+    orderedElements.insert(orderedElements.end(), group.begin(), group.end());
+    remainingElements.erase(remainingElements.begin() + index, remainingElements.begin() + endIndex);
+    index = endIndex;
+  }
+  std::deque<unsigned int>::iterator it;
+
+  // std::cout << "Start: " << std::endl;
+  // for (it = remainingElements.begin(); it < remainingElements.end(); it++)
+  // {
+
+  //   std::cout << "\t" << *it << std::endl;
+  // }
+  remainingElements = orderedElements;
+  // std::cout << "Start: " << std::endl;
+  // for (it = remainingElements.begin(); it < remainingElements.end(); it++)
+  // {
+
+  //   std::cout << "\t" << *it << std::endl;
+  // }
+}
+
 template <typename ContainerPair, typename Container>
 void PmergeMe::insert(ContainerPair list, Container &container) {
-  bool hasLast = container.size() % 2 == 0 ? false : true;
   container.clear();
+// POURQUOI DES ELEMENTS DISPARAISSENT
+  std::deque<unsigned int> remainingElements;
+  if (_hasLast)
+    remainingElements.push_back(_last);
   typedef typename ContainerPair::iterator iteratorPair;
   typedef typename Container::iterator iterator;
   for (iteratorPair it = list.begin(); it != list.end(); it++) {
-    container.push_back(it->first);
+    remainingElements.push_back(it->first);
+    container.push_back(it->second);
   }
 
-  for (iteratorPair it = list.begin(); it != list.end(); it++) {
+  partitionRemainingElements(remainingElements);
+  std::deque<unsigned int>::iterator it;
+  for (it = remainingElements.begin(); it != remainingElements.end(); it++)
+  {
     iterator pos =
-        std::lower_bound(container.begin(), container.end(), it->second);
-    container.insert(pos, it->second);
-  }
-  if (hasLast) {
-    iterator pos = std::lower_bound(container.begin(), container.end(), _last);
-    container.insert(pos, _last);
+        std::lower_bound(container.begin(), container.end(), *it);
+        container.insert(pos, *it);
   }
 }
 
 template <typename ContainerPair> void printContent(ContainerPair container) {
   typedef typename ContainerPair::iterator iteratorPair;
+  std::cout << "DULIRE\n";
   for (iteratorPair it = container.begin(); it != container.end(); it++) {
     std::cout << it->first << " -> " << it->second << std::endl;
   }
@@ -188,6 +246,7 @@ void PmergeMe::sortContainers() {
   pairDq dq = getPair<pairDq>(_dq);
   // printContent(dq);
   sortDq(dq);
+  // printContent(dq);
   insert(dq, _dq);
   clock_t end = clock();
   _elapsedTimeDeque = static_cast<double>(end - start) / CLOCKS_PER_SEC;
