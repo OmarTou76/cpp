@@ -159,21 +159,21 @@ void PmergeMe::sortDq(pairDq &list) {
 }
 
 std::deque<unsigned int> getSequences(unsigned int max) {
-    std::deque<unsigned int> groupSizes(2, 2);
-    unsigned int acc = 4; // Somme des éléments actuels (2 + 2)
-      unsigned int index = 1; // Index du dernier élément ajouté
+  std::deque<unsigned int> groupSizes(2, 2);
+  unsigned int acc = 4;
+  unsigned int index = 1;
+  while (acc < max) {
+    unsigned int next = groupSizes[index] + 2 * groupSizes[index - 1];
+    groupSizes.push_back(next);
+    acc += next;
+    index++;
+  }
 
-      while (acc < max) {
-          unsigned int next = groupSizes[index] + 2 * groupSizes[index - 1];
-          groupSizes.push_back(next);
-          acc += next;
-          index++;
-      }
-
-      return groupSizes;
+  return groupSizes;
 }
 
-void PmergeMe::partitionRemainingElements(std::deque<unsigned int> &remainingElements) {
+void PmergeMe::partitionRemainingElements(
+    std::deque<unsigned int> &remainingElements) {
   std::deque<unsigned int> orderedElements;
   std::deque<unsigned int> subArrSize = getSequences(remainingElements.size());
   size_t index = 0;
@@ -186,7 +186,7 @@ void PmergeMe::partitionRemainingElements(std::deque<unsigned int> &remainingEle
     std::cout << "groupe size: " << size << std::endl;
     size_t endIndex = std::min(index + size, remainingElements.size());
     std::deque<unsigned int> group(remainingElements.begin() + index,
-                    remainingElements.begin() + endIndex);
+                                   remainingElements.begin() + endIndex);
     std::reverse(group.begin(), group.end()); // Trier par index décroissant
     orderedElements.insert(orderedElements.end(), group.begin(), group.end());
     index = endIndex;
@@ -198,7 +198,7 @@ void PmergeMe::partitionRemainingElements(std::deque<unsigned int> &remainingEle
 template <typename ContainerPair, typename Container>
 void PmergeMe::insert(ContainerPair list, Container &container) {
   container.clear();
-// POURQUOI DES ELEMENTS DISPARAISSENT
+  // POURQUOI DES ELEMENTS DISPARAISSENT
   std::deque<unsigned int> remainingElements;
   if (_hasLast)
     remainingElements.push_back(_last);
@@ -211,11 +211,9 @@ void PmergeMe::insert(ContainerPair list, Container &container) {
 
   partitionRemainingElements(remainingElements);
   std::deque<unsigned int>::iterator it;
-  for (it = remainingElements.begin(); it != remainingElements.end(); it++)
-  {
-    iterator pos =
-        std::lower_bound(container.begin(), container.end(), *it);
-        container.insert(pos, *it);
+  for (it = remainingElements.begin(); it != remainingElements.end(); it++) {
+    iterator pos = std::lower_bound(container.begin(), container.end(), *it);
+    container.insert(pos, *it);
   }
 }
 
