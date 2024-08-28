@@ -159,18 +159,18 @@ void PmergeMe::sortDq(pairDq &list) {
 }
 
 std::deque<unsigned int> getSequences(unsigned int max) {
-  std::deque<unsigned int> groupSizes(2, 2);
-  unsigned int acc = 4;
-  unsigned int index = 1;
-  while (acc < max) {
-    unsigned int next = groupSizes[index - 1] + groupSizes[index] + 2;
-    std::cout <<groupSizes[index - 1] << " + " << groupSizes[index] <<std::endl;
-    std::cout << "-> " << next << std::endl;
-    groupSizes.push_back(next);
-    acc += next;
-    index++;
-  }
-  return groupSizes;
+    std::deque<unsigned int> groupSizes(2, 2);
+    unsigned int acc = 4; // Somme des éléments actuels (2 + 2)
+      unsigned int index = 1; // Index du dernier élément ajouté
+
+      while (acc < max) {
+          unsigned int next = groupSizes[index] + 2 * groupSizes[index - 1];
+          groupSizes.push_back(next);
+          acc += next;
+          index++;
+      }
+
+      return groupSizes;
 }
 
 void PmergeMe::partitionRemainingElements(std::deque<unsigned int> &remainingElements) {
@@ -183,30 +183,16 @@ void PmergeMe::partitionRemainingElements(std::deque<unsigned int> &remainingEle
       break;
     int size = subArrSize[s];
 
+    std::cout << "groupe size: " << size << std::endl;
     size_t endIndex = std::min(index + size, remainingElements.size());
-    std::cout << "Size: " << remainingElements.size() << " - " << endIndex << " - " << size << std::endl;
     std::deque<unsigned int> group(remainingElements.begin() + index,
                     remainingElements.begin() + endIndex);
     std::reverse(group.begin(), group.end()); // Trier par index décroissant
     orderedElements.insert(orderedElements.end(), group.begin(), group.end());
-    remainingElements.erase(remainingElements.begin() + index, remainingElements.begin() + endIndex);
     index = endIndex;
   }
   std::deque<unsigned int>::iterator it;
-
-  // std::cout << "Start: " << std::endl;
-  // for (it = remainingElements.begin(); it < remainingElements.end(); it++)
-  // {
-
-  //   std::cout << "\t" << *it << std::endl;
-  // }
   remainingElements = orderedElements;
-  // std::cout << "Start: " << std::endl;
-  // for (it = remainingElements.begin(); it < remainingElements.end(); it++)
-  // {
-
-  //   std::cout << "\t" << *it << std::endl;
-  // }
 }
 
 template <typename ContainerPair, typename Container>
